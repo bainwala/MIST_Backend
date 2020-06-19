@@ -18,7 +18,6 @@ const usersSchema = new mongoose.Schema({
   password: String,
 });
 
-<<<<<<< HEAD
 //Challenges
 const challengesSchema = new mongoose.Schema({
   categoryid: String,
@@ -30,18 +29,6 @@ const challengesSchema = new mongoose.Schema({
   description: String,
   code: String,
   rating: Number,
-=======
-const challengeSchema = new mongoose.Schema({
-    category: String,
-    position: String,
-    createdAt: String,
-    modifiedAt: String,
-    title: String,
-    name: String,
-    description: String,
-    code: String,
-    rating: Number,
->>>>>>> bb037ef838bbdb19d290a7b51a0b78c0a6459295
 });
 
 //Images
@@ -66,18 +53,11 @@ usersSchema.plugin(passportLocal);
 
 // Models
 const User = mongoose.model("User", usersSchema);
-<<<<<<< HEAD
 const Challenges = mongoose.model("Challenges", challengesSchema);
 const Images = mongoose.model("Images", imagesSchema);
 
 module.exports.User = User;
 module.exports.Challenges = Challenges;
 module.exports.Images = Images;
-=======
-const Challenge = mongoose.model("Challenge", challengeSchema);
-
-module.exports.User = User;
-module.exports.Challenge = Challenge;
->>>>>>> bb037ef838bbdb19d290a7b51a0b78c0a6459295
 
 module.exports.sanitize = sanitize; //sanitizes string

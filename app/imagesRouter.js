@@ -3,7 +3,7 @@ module.exports = (router, database) => {
   const images = require("./functions/image");
   //up to here
 
-  router.get("/image/:imageid", (req, res) => {
+  router.get("/:imageid", (req, res) => {
     res.render("image.buildPage", {
       userid: req,
       userData: req.user,
@@ -22,7 +22,7 @@ module.exports = (router, database) => {
     });
   });
 
-  app.get("/user/:username/images", (req, res) => {
+  app.get("/:username/images", (req, res) => {
     res.render("albums.allImagesinAlbum", {
       userid: req,
       userData: req.user,
@@ -41,7 +41,7 @@ module.exports = (router, database) => {
     });
   });
 
-  router.post("/image/:imageid", (req, res) => {
+  router.post("/:imageid", (req, res) => {
     if (req.body.commentSubmit != null) {
       image.saveComment(req, res, database);
     } else if (req.body.delete != null) {
