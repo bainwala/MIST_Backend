@@ -1,44 +1,14 @@
 //check if this is right
 module.exports = (app, database) => {
-  const images = require("./functions/image");
+  const image = require("./functions/image");
   //up to here
 
-  app.get("/:imageid", (req, res) => {
-    res.render("image.buildPage", {
-      userid: req,
-      userData: req.user,
-      createdAt: "",
-      modifiedAt: "",
-      imageid: "",
-      code: "",
-      codevisible: "",
-      format: "",
-      rating: "",
-      title: "",
-      license: "",
-      public: "",
-      basedon: "",
-      Blurb: "",
-    });
-  });
+  // app.get("/:imageid", (req, res) => {
+  //   image.buildPage(req, res, database);
+  // });
 
   app.get("/:username/images", (req, res) => {
-    res.render("albums.allImagesinAlbum", {
-      userid: req,
-      userData: req.user,
-      createdAt: "",
-      modifiedAt: "",
-      imageid: "",
-      code: "",
-      codevisible: "",
-      format: "",
-      rating: "",
-      title: "",
-      license: "",
-      public: "",
-      basedon: "",
-      Blurb: "",
-    });
+    albums.allImagesinAlbum(req, res, database);
   });
 
   app.post("/:imageid", (req, res) => {

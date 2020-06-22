@@ -92,15 +92,20 @@ module.exports = (app, passport, database) => {
   // --------------------------------------------------
   // Path: /api
   //   Dynamic content distribution - return raw data through AJAX
-  //const api = require('./functions/api');
-  //app.post('/api', function (req, res) { api.run(req.body, req, res); });
-  //app.get('/api', function (req, res) { api.run(req.query, req, res); });
+  const api = require("./functions/api");
+  app.post("/api", function (req, res) {
+    api.run(req.body, req, res);
+  });
+  app.get("/api", function (req, res) {
+    api.run(req.query, req, res);
+  });
 
   require("./userRouter")(app, database);
   require("./challengesRouter")(app, database);
   require("./indexRouter")(app, database);
   require("./galleryRouter")(app, database);
   require("./albumsRouter")(app, database);
+  //require("./imagesRouter")(app, database);
 
   // --------------------------------------------------
   // Path: /create

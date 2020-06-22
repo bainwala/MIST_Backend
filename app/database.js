@@ -138,3 +138,23 @@ module.exports.createAlbum = (userid, name, callback) => {
     callback(writeOpResult, err);
   });
 }; // createAlbum
+
+/**
+ * Get the title, code, username, modification date, rating, and more
+ * for an image.  If it finds the information, calls `callback(info,null)`.
+ * Otherwise, calls `callback(null,error)`.
+ */
+
+module.exports.imageInfo = function (imageid, callback) {
+  imageid = sanitize(imageid);
+  // module.exports.query(
+  //   "SELECT images.title, images.code, users.username, images.modifiedAt, images.rating, images.imageid, images.userid, images.featured FROM images, users WHERE images.imageid= '" +
+  //     imageid +
+  //     "' and images.userid = users.userid;",
+  //   function (rows, error) {
+  //     if (error) callback(null, error);
+  //     else if (!rows[0]) callback(null, "ERROR: Image does not exist.");
+  //     else callback(rows[0], null);
+  //   }
+  // );
+};
