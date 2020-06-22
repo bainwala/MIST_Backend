@@ -6,6 +6,13 @@ module.exports = (app, passport, database) => {
     });
   });
 
+  app.get("/signup", (req, res) => {
+    res.render("signup", {
+      user: req,
+      message: req.flash("message"),
+    });
+  });
+
   app.post(
     "/signup",
     passport.authenticate("signup", {
@@ -17,7 +24,7 @@ module.exports = (app, passport, database) => {
 
   //------------------------------------------------
 
-  app.get("/", (req, res) => {
+  app.get("/about", (req, res) => {
     res.render("about", {
       user: req,
       userData: req.user,
@@ -53,34 +60,16 @@ module.exports = (app, passport, database) => {
     }
   });
 
-  app.get("/albums", (req, res) => {
-    if (req.isAuthenticated()) {
-      res.render("albums", {
-        user: req,
-        userData: req.user,
-        username: req.user.username,
-        albums: "",
-      });
-    } else {
-      res.redirect("/login");
-    }
-  });
+  //------------------------------------------------
 
   //------------------------------------------------
 
-  app.get("/me", (req, res) => {
-    if (req.isAuthenticated()) {
-      res.redirect("/user/" + req.user.username);
-    } else {
-      res.redirect("/login");
-    }
-  });
-
   //------------------------------------------------
 
-  app.get("/user/:username", (req, res) => {
-    res.render("profile", {
-      user: req.user,
+  app.get("/help", (req, res) => {
+    res.render("help", {
+      user: req,
+      userData: req.user,
     });
   });
 
@@ -91,19 +80,37 @@ module.exports = (app, passport, database) => {
     res.redirect("/");
   });
 
-  const express = require("express");
-  const challengeRouter = require("./challengesRouter")(
-    express.Router(),
-    database
-  );
-  const indexRouter = require("./indexRouter")(express.Router(), database);
-  const galleryRouter = require("./galleryRouter")(express.Router(), database);
-  const imagesRouter = require("./imagesRouter")(express.Router(), database);
+  //------------------------------------------------
 
-  app.use("/", indexRouter);
-  app.use("/challenges", challengeRouter);
-  app.use("/gallery", galleryRouter);
-  require("./imagesRouter", imagesRouter)(app, database);
+  app.get("/help", (req, res) => {
+    res.render("help", {
+      user: req,
+      userData: req.user,
+    });
+  });
+
+  // --------------------------------------------------
+  // Path: /api
+  //   Dynamic content distribution - return raw data through AJAX
+  //const api = require('./functions/api');
+  //app.post('/api', function (req, res) { api.run(req.body, req, res); });
+  //app.get('/api', function (req, res) { api.run(req.query, req, res); });
+
+  require("./userRouter")(app, database);
+  require("./challengesRouter")(app, database);
+  require("./indexRouter")(app, database);
+  require("./galleryRouter")(app, database);
+  require("./albumsRouter")(app, database);
+
+  // --------------------------------------------------
+  // Path: /create
+  //   Page for creating (something)
+  app.get("/create", function (req, res) {
+    res.render("create", {
+      user: req,
+      userData: req.user,
+    });
+  });
 
   app.listen(5000, () => {
     console.log("listening on 5000..");

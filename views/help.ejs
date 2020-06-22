@@ -3,12 +3,12 @@
   edit it directly.
 
   The command used to generate this file was
-    gejs profile.gejs -t mist.ejs -o profile.ejs
+    gejs help.gejs -t mist.ejs -o help.ejs
  -->
  <!DOCTYPE html>
  <html lang="en">
   <head>
-   <title> <%= userData.username + " on MIST" %>
+   <title>MIST Help
  </title>
    <!-- Meta Information -->
    <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -17,7 +17,7 @@
  
    <!-- CSS -->
    <link rel='stylesheet' href='/css/styles.css'>
-    <link rel='stylesheet', href='/css/profile.css'>
+   <link rel='stylesheet', href='/css/help.css'>
    
  
  
@@ -31,9 +31,6 @@
    <script type="text/javascript" src="/js/analytics.js"></script>
    <script type="text/javascript" src="/js/sharing-tools.js"></script>
  
-    <script type='text/javascript' src='/js/profile.js'></script>
-    <script type='text/javascript' src='/js/single-image.js'></script>
-   
  
   </head>
  
@@ -73,20 +70,56 @@
      </nav>
    </header>
    <div id="main">
- <div id="pageTitleGeneral"><h1>     <%- userData.username %>
-      
+ <div id="pageTitleGeneral"><h1>    help & tutorials
      
  </h1></div>
  
-     <div id = 'subviews'>
-       <a href='/me/<%= userData.username %>' class='subview' id='selected'>profile</a>
-       <a href='/badges' class='subview'>badges</a>
-       <a href='/me/<%= userData.username %>/albums' class='subview'>albums</a>
-       <a href='/me/<%= userData.username %>/images' class='subview'>images</a>
-     </div>
-     <div id= 'memberSince'><%- "member since " + userData.dateJoined %></div>
-     <div id= 'profile'>
-      <a href = "/me/:username/accountSettings"><button>Account Settings</button></a>
+     <p class= "intro">
+       Confused about MIST?  Here are a few quick guides to get you started.
+     </p>
+     <table class ='help'>
+       <tr>
+         <th> Section </th>
+         <th> Description </th>
+         <th> Type </th>
+       </tr>
+       <tr>
+         <td><a href='/tutorial/intro'>An Introduction to MIST</a></td>
+         <td>A quick introduction to the ideas behind MIST</td>
+         <td>Text</td>
+       </tr>
+       <tr>
+         <td><a href='/video/intro-site'>A Quick Tour of the Web Site</a></td>
+         <td>A brief introduction to the pages on this site</td>
+         <td>Video</td>
+       </tr>
+       <tr>
+         <td><a href='/tutorial/gui'>Getting Started with the Workspace</a></td>
+         <td>A short introduction to the workspace for creating new MIST images</td>
+         <td>Text</td>
+       </tr>
+       <tr>
+         <td><a href='/video/intro-gui'>The MIST Workspace</a></td>
+         <td>A shorter introduction to the workspace for creating new MIST images</td>
+         <td>Video</td>
+       </tr>
+       <tr>
+         <td><a href='/video/extended-1'>An Extended Example, Part 1</a></td>
+         <td>A quick demonstration of how to make an "interesting" animation</td>
+         <td>Video</td>
+       </tr>
+       <tr>
+         <td><a href='/tutorial/rgb'>Pretty Pictures</a></td>
+         <td>An introduction to RGB</td>
+         <td>Text</td>
+       </tr>
+       <tr>
+         <td><a href='/tutorial/animation'>Moving Pictures</a></td>
+         <td>An introduction to Animation</td>
+         <td>Text</td>
+       </tr>
+     </table>
+ 
    </div>
    <footer>
     <p>&copy;2014 Glimmer Labs</p>
@@ -100,7 +133,7 @@
       <li><a href="/challenges">challenges</a></li>
       <li><a href="/gallery">gallery</a></li>
       <li><a href="/about">about</a></li>
-      <% if(user.isAuthenticated()) {%>
+      <% if(user) {%>
       <li><a href="/me">my account</a></li>
  <% } else { %>
       <li><a href="/login">login</a></li>
