@@ -1,9 +1,9 @@
 //check if this is right
-module.exports = (router, database) => {
+module.exports = (app, database) => {
   const images = require("./functions/image");
   //up to here
 
-  router.get("/:imageid", (req, res) => {
+  app.get("/:imageid", (req, res) => {
     res.render("image.buildPage", {
       userid: req,
       userData: req.user,
@@ -41,7 +41,7 @@ module.exports = (router, database) => {
     });
   });
 
-  router.post("/:imageid", (req, res) => {
+  app.post("/:imageid", (req, res) => {
     if (req.body.commentSubmit != null) {
       image.saveComment(req, res, database);
     } else if (req.body.delete != null) {
@@ -52,8 +52,6 @@ module.exports = (router, database) => {
       image.setProfilePicture(req, res, database);
     }
   });
-
-  return router;
 };
 /*
  // --------------------------------------------------

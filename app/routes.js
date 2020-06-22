@@ -103,7 +103,7 @@ module.exports = (app, passport, database) => {
   app.use("/", indexRouter);
   app.use("/challenges", challengeRouter);
   app.use("/gallery", galleryRouter);
-  app.use("./images", imagesRouter);
+  require("./imagesRouter", imagesRouter)(app, database);
 
   app.listen(5000, () => {
     console.log("listening on 5000..");
